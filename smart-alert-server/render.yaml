@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: smart-alert-nodejs-server
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: FIREBASE_DATABASE_URL
+        value: https://realtimewokwi-default-rtdb.asia-southeast1.firebasedatabase.app

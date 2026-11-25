@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "Smart Alert IoT Lab",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 70, "left": 260, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -150,
+      "left": 10,
+      "attrs": { "temperature": "25", "humidity": "60" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -159.2,
+      "left": 271.02,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gas-sensor",
+      "id": "gas1",
+      "top": 190,
+      "left": 10,
+      "attrs": { "ppm": "100", "threshold": "4.4" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "fire1",
+      "top": 205,
+      "left": 540,
+      "attrs": { "color": "red", "label": "FIRE" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -130,
+      "left": 530,
+      "attrs": { "color": "red", "label": "ALARM" }
+    },
+    { "type": "wokwi-resistor", "id": "r1", "top": -20, "left": 550, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "buzz1", "top": 65, "left": 535, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:15", "green", [] ],
+    [ "pir1:VCC", "esp:3V3", "red", [] ],
+    [ "pir1:GND", "esp:GND.1", "black", [] ],
+    [ "pir1:OUT", "esp:13", "green", [] ],
+    [ "gas1:VCC", "esp:5V", "red", [] ],
+    [ "gas1:GND", "esp:GND.2", "black", [] ],
+    [ "gas1:AOUT", "esp:34", "green", [] ],
+    [ "fire1:1.l", "esp:12", "green", [] ],
+    [ "fire1:2.l", "esp:GND.2", "black", [] ],
+    [ "esp:2", "r1:1", "green", [] ],
+    [ "r1:2", "led1:A", "green", [] ],
+    [ "led1:C", "esp:GND.3", "black", [] ],
+    [ "buzz1:2", "esp:2", "green", [] ],
+    [ "buzz1:1", "esp:GND.3", "black", [] ]
+  ],
+  "dependencies": {}
+}
